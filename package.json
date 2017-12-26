@@ -1,0 +1,11 @@
+{
+  "name": "headless_chrome",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cls && node app.js"
+  }
+}
