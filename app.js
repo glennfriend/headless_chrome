@@ -1,7 +1,8 @@
 // cls && node app.js && start example.png
-const puppeteer = require('puppeteer');
-const disp = require('./pages/disp.js');
-const google_click = require('./pages/google_click.js');
+const puppeteer         = require('puppeteer');
+const disp              = require('./src/disp.js');
+const google_click      = require('./src/google_click.js');
+const custom_browser    = require('./src/custom_browser.js');
 
 // --------------------------------------------------------------------------------
 // 
@@ -89,12 +90,13 @@ function main()
 
         /*
         disp.news().then((rows) => {
+        google_click.run().then((rows) => {
             console.log("\n" + rows.join("\n"));
         });
         */
 
-        google_click.run().then((rows) => {
-            console.log("\n" + rows.join("\n"));
+        custom_browser.run().then(() => {
+            console.log("hello browser\n");
         });
 
     }
