@@ -3,7 +3,7 @@
 - yarn
 
 #### env
-- linux desktop
+- linux server
 - windows 10 desktop
 
 #### troubleshooting guide

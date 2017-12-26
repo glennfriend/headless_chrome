@@ -85,20 +85,26 @@ const links = await page.evaluate(() => {
 function main()
 {
     try {
-
-        // shot.sample('https://www.google.com.tw/search?q=merry+christmas');
-
         /*
-        disp.news().then((rows) => {
+
+        shot.sample('https://www.google.com.tw/search?q=merry+christmas');
+
         google_click.run().then((rows) => {
             console.log("\n" + rows.join("\n"));
         });
-        */
+
+        disp.news().then((rows) => {
+            console.log("\n" + rows.join("\n"));
+        });
 
         custom_browser.run().then(() => {
             console.log("hello browser\n");
         });
+        */
 
+        disp.news().then((rows) => {
+            console.log("\n" + rows.join("\n"));
+        });
     }
     catch (err)
     {
