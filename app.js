@@ -15,6 +15,7 @@ class shot {
         const page = await browser.newPage();
         await page.goto(url, { waitUntil: "networkidle2" });
         await page.screenshot({ path: filename, quality: 20, clip: {x:0, y:0, width:1200, height:1000} });
+                                // fullPage: true
         browser.close();
     }
 
@@ -82,17 +83,23 @@ const links = await page.evaluate(() => {
 
 function main()
 {
-    // shot.sample('https://www.google.com.tw/search?q=merry+christmas');
+    try {
 
-    /*
-    disp.news().then((rows) => {
-        console.log("\n" + rows.join("\n"));
-    });
-    */
+        // shot.sample('https://www.google.com.tw/search?q=merry+christmas');
 
+        /*
+        disp.news().then((rows) => {
+            console.log("\n" + rows.join("\n"));
+        });
+        */
 
-    google_click.run().then((rows) => {
-        console.log("\n" + rows.join("\n"));
-    });
+        google_click.run().then((rows) => {
+            console.log("\n" + rows.join("\n"));
+        });
 
+    }
+    catch (err)
+    {
+        console.error(err)
+    }
 }
