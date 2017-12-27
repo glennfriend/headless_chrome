@@ -1,11 +1,20 @@
 const argv = global.process.argv;
 
+const _ = 
+{
+    cloneArgv: function()
+    {
+        return Object.assign([], argv);
+    },
+};
+
+
 // --------------------------------------------------------------------------------
 // 
 // --------------------------------------------------------------------------------
 function getAll()
 {
-    let all = Object.assign([], argv);
+    let all = _.cloneArgv();
     all.shift();
     all.shift();
     return all;
