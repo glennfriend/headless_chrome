@@ -1,4 +1,5 @@
 const puppeteer         = require('puppeteer');
+const lodash            = require('lodash');
 const argv              = require('./common/argv.js');
 //
 const disp              = require('./src/disp.js');
@@ -11,11 +12,13 @@ const custom_browser    = require('./src/custom_browser.js');
 // --------------------------------------------------------------------------------
 // list
 // --------------------------------------------------------------------------------
-const list = [
-    'disp',
-    'google_click',
-    'custom_browser',
-];
+const routes = {
+    'disp'          : disp,
+    'google_click'  : google_click,
+    'custom_browser': custom_browser,
+};
+
+const list = lodash.keys(routes);
 
 
 // --------------------------------------------------------------------------------
@@ -43,6 +46,7 @@ class shot {
     }
 
 }
+
 
 // --------------------------------------------------------------------------------
 // 
@@ -88,6 +92,7 @@ const links = await page.evaluate(() => {
 
 */
 
+
 // --------------------------------------------------------------------------------
 // 
 // --------------------------------------------------------------------------------
@@ -106,7 +111,7 @@ function main()
         });
 
         console.log("");
-        console.log("---- example ----");
+        console.log("---- sample ----");
         console.log("    -> cls && node app.js " + list[0]);
         return;
     }
@@ -117,10 +122,8 @@ function main()
         return;
     }
 
-
     try {
-        eval(`var currentObject = ${scriptName};`);
-        currentObject.run().then((rows) => {
+        routes[scriptName].run().then((rows) => {
             if (rows) {
                 console.log("\n" + rows.join("\n"));
             }
