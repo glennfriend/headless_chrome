@@ -35,5 +35,5 @@ async function news()
 }
 
 module.exports = {
-    news: news
+    run: news
 };

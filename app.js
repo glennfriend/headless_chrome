@@ -1,8 +1,22 @@
-// cls && node app.js && start example.png
 const puppeteer         = require('puppeteer');
+const argv              = require('./common/argv.js');
+//
 const disp              = require('./src/disp.js');
 const google_click      = require('./src/google_click.js');
 const custom_browser    = require('./src/custom_browser.js');
+//
+// cls && node app.js && start example.png
+
+
+// --------------------------------------------------------------------------------
+// list
+// --------------------------------------------------------------------------------
+const list = [
+    'disp',
+    'google_click',
+    'custom_browser',
+];
+
 
 // --------------------------------------------------------------------------------
 // 
@@ -82,10 +96,44 @@ const links = await page.evaluate(() => {
     main();
 })();
 
+
 function main()
 {
+    if (! argv.has(0)) {
+        console.log("---- all script ----");
+        list.map(function(str){
+            console.log("    -> " + str);
+        });
+
+        console.log("");
+        console.log("---- example ----");
+        console.log("    -> cls && node app.js " + list[0]);
+        return;
+    }
+
+    let scriptName = argv.get(0);
+    if (-1 === list.indexOf(scriptName)) {
+        console.log("Error: script not found !");
+        return;
+    }
+
+
     try {
-        /*
+        eval(`var currentObject = ${scriptName};`);
+        currentObject.run().then((rows) => {
+            if (rows) {
+                console.log("\n" + rows.join("\n"));
+            }
+        });
+    }
+    catch (err)
+    {
+        console.error(err)
+    }
+
+
+    /*
+        example:
 
         shot.sample('https://www.google.com.tw/search?q=merry+christmas');
 
@@ -100,14 +148,10 @@ function main()
         custom_browser.run().then(() => {
             console.log("hello browser\n");
         });
-        */
 
         disp.news().then((rows) => {
             console.log("\n" + rows.join("\n"));
         });
-    }
-    catch (err)
-    {
-        console.error(err)
-    }
+    */
+
 }
